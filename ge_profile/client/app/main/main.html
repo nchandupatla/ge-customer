@@ -1,0 +1,171 @@
+<header>
+  <div class="container">
+    <h3>Add GE Customer</h3>
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="form" name="form" ng-submit="vm.add(form)" novalidate>
+
+        <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
+                                            'has-error': form.name.$invalid && vm.submitted }">
+          <label>First Name</label>
+
+          <input type="text" name="name" class="form-control" ng-model="vm.user.first"
+                 required/>
+          <p class="help-block" ng-show="form.name.$error.required && vm.submitted">
+            First name is required
+          </p>
+        </div>
+
+          <div class="form-group" ng-class="{ 'has-success': form.last.$valid && vm.submitted,
+                                            'has-error': form.last.$invalid && vm.submitted }">
+          <label>Last Name</label>
+
+          <input type="text" name="last" class="form-control" ng-model="vm.user.last"
+                 required/>
+          <p class="help-block" ng-show="form.last.$error.required && vm.submitted">
+            Last name is required
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.email.$valid && vm.submitted,
+                                            'has-error': form.email.$invalid && vm.submitted }">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="vm.user.email"
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="form.email.$error.email && vm.submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="form.email.$error.required && vm.submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="form.email.$error.mongoose">
+            {{ vm.errors.email }}
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="phone" name="phone" class="form-control" ng-model="vm.user.phone"/>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form.address.$valid && vm.submitted,
+                                            'has-error': form.address.$invalid && vm.submitted }">
+          <label>Address</label>
+
+          <input type="text" name="address" class="form-control" ng-model="vm.user.address"
+                 />
+        
+        </div>
+
+        <div>
+          <button class="btn btn-inverse btn-lg btn-register" type="submit">
+            Add
+          </button>
+        </div>
+
+      </form>
+  <hr>
+</div>
+<h3>Existing GE Customer</h3>
+<table>
+   <tr>
+   <th>Name</th>
+   <th>Email</th>
+   <th>Phone</th>
+   <th>Address</th>
+   <th>Action</th>
+ </tr>
+  <tr ng-repeat="customer in vm.customers">
+    <td>{{customer.first }} {{ customer.last}}</td>
+    <td>{{customer.email }}</td>
+    <td>{{customer.phone }}</td>
+    <td>{{customer.address }}</td>
+    <td>
+    <button class="btn btn-inverse btn-md" ng-click="vm.edit(customer)">
+          Edit
+  </button>
+    <button class="btn btn-inverse btn-md" ng-click="vm.delete(customer)">
+            Delete
+    </button>
+    </td>
+  </tr>
+</table>
+   
+  </div>
+  <br/> <br/> 
+  <div class="container" ng-show="vm.showedit==true">
+  <div class="row">
+    <div class="col-sm-12">
+      <form class="form" name="form1" ng-submit="vm.update(form1,vm.useredit)" novalidate>
+
+        <div class="form-group" ng-class="{ 'has-success': form1.name.$valid && vm.submitted,
+                                            'has-error': form1.name.$invalid && vm.submitted }">
+          <label>First Name</label>
+
+          <input type="text" name="name" class="form1-control" ng-model="vm.useredit.first"
+                 required/>
+          <p class="help-block" ng-show="form1.name.$error.required && vm.submitted">
+            First name is required
+          </p>
+        </div>
+
+          <div class="form-group" ng-class="{ 'has-success': form1.last.$valid && vm.submitted,
+                                            'has-error': form1.last.$invalid && vm.submitted }">
+          <label>Last Name</label>
+
+          <input type="text" name="last" class="form-control" ng-model="vm.useredit.last"
+                 required/>
+          <p class="help-block" ng-show="form1.last.$error.required && vm.submitted">
+            Last name is required
+          </p>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form1.email.$valid && vm.submitted,
+                                            'has-error': form1.email.$invalid && vm.submitted }">
+          <label>Email</label>
+
+          <input type="email" name="email" class="form-control" ng-model="vm.useredit.email"
+                 required
+                 mongoose-error/>
+          <p class="help-block" ng-show="form1.email.$error.email && vm.submitted">
+            Doesn't look like a valid email.
+          </p>
+          <p class="help-block" ng-show="form1.email.$error.required && vm.submitted">
+            What's your email address?
+          </p>
+          <p class="help-block" ng-show="form1.email.$error.mongoose">
+            {{ vm.errors.email }}
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="phone" name="phone" class="form-control" ng-model="vm.useredit.phone"/>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-success': form1.address.$valid && vm.submitted,
+                                            'has-error': form1.address.$invalid && vm.submitted }">
+          <label>Address</label>
+
+          <input type="text" name="address" class="form-control" ng-model="vm.useredit.address"
+                 />
+        
+        </div>
+
+        <div>
+          <button class="btn btn-inverse btn-lg btn-register" type="submit">
+            Edit
+          </button>
+        </div>
+
+      </form>
+  <hr>
+</div>
+  </div>
+</div>
